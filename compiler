@@ -1,3 +1,10 @@
 #!/bin/bash
-g++ -O3 -std=c++17 -Wall -Weffc++ -Wextra -Wsign-conversion main.cpp -o main
+IFS='/' read -ra ADDR <<< "$1"
+for i in "${ADDR[@]}"
+do
+    file=$i
+done
+IFS='.' read -ra ADDR <<< "$file"
+
+g++ -O3 -std=c++17 -Wall -Weffc++ -Wextra -Wsign-conversion "$ADDR.cpp" -o $ADDR
 
