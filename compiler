@@ -1,4 +1,8 @@
 #!/bin/bash
+
+# Infinite input files, output name (executable) is set to the first input name.
+# Usage "compiler firstFile.cpp secondFile.cpp" --> Will generate a program named firstFile
+
 IFS='/' read -ra ADDR <<< "$1"
 for i in "${ADDR[@]}"
 do
@@ -6,5 +10,5 @@ do
 done
 IFS='.' read -ra ADDR <<< "$file"
 
-g++ -O3 -std=c++17 -Wall -Weffc++ -Wextra -Wsign-conversion "$ADDR.cpp" -o $ADDR
+g++ -O3 -std=c++17 -Wall -Weffc++ -Wextra -Wsign-conversion "$@" -o $ADDR
 
